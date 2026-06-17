@@ -64,19 +64,19 @@ class ALDMeasurementData(ArchiveSection):
     port_configurations = Quantity(
         type=JSON,
         description='Mapping of system ports to their respective chemicals/gases.',
-        a_eln=dict(component=ELNComponentEnum.ValueEditQuantity),
+        a_eln=dict(component=ELNComponentEnum.StringEditQuantity),
     )
 
     precursor_doses = Quantity(
         type=JSON,
         description='Cumulative dose times for each precursor.',
-        a_eln=dict(component=ELNComponentEnum.ValueEditQuantity),
+        a_eln=dict(component=ELNComponentEnum.StringEditQuantity),
     )
 
     running_recipe = Quantity(
         type=JSON,
         description='The sequential recipe steps executed during the process.',
-        a_eln=dict(component=ELNComponentEnum.ValueEditQuantity),
+        a_eln=dict(component=ELNComponentEnum.StringEditQuantity),
     )
 
     sensor_logs = SubSection(section_def=SensorLog, repeats=True)

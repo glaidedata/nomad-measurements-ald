@@ -3,7 +3,7 @@ from nomad.datamodel.datamodel import EntryArchive
 from nomad.parsing.parser import MatchingParser
 from nomad_measurements.utils import create_archive
 
-from measurements_ald.schema_packages.schema_package import (
+from nomad_measurements_ald.schema_packages.schema_package import (
     ELNItalyaALD,
     RawFileALDData,
 )
