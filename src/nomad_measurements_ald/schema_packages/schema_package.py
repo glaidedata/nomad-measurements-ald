@@ -64,19 +64,19 @@ class ALDMeasurementData(ArchiveSection):
     port_configurations = Quantity(
         type=JSON,
         description='Mapping of system ports to their respective chemicals/gases.',
-        a_eln=dict(component=ELNComponentEnum.StringEditQuantity),
+        a_eln=dict(), 
     )
 
     precursor_doses = Quantity(
         type=JSON,
         description='Cumulative dose times for each precursor.',
-        a_eln=dict(component=ELNComponentEnum.StringEditQuantity),
+        a_eln=dict(),
     )
 
     running_recipe = Quantity(
         type=JSON,
         description='The sequential recipe steps executed during the process.',
-        a_eln=dict(component=ELNComponentEnum.StringEditQuantity),
+        a_eln=dict(),
     )
 
     sensor_logs = SubSection(section_def=SensorLog, repeats=True)
@@ -166,7 +166,7 @@ class ELNItalyaALD(BaseALDSpectroscopy, EntryData):
             meas_data = self.results[0].data
             meas_data.port_configurations = ald_data.port_configurations
             meas_data.precursor_doses = ald_data.precursor_doses
-            meas_data.running_recipe = ald_data.running_rcp
+            meas_data.running_recipe = {"steps": ald_data.running_rcp}
 
             # 5. Process and Map Sensor Logs (Telemetry)
             if ald_data.communication_data is not None and not ald_data.communication_data.empty:
