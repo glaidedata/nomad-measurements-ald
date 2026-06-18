@@ -26,12 +26,10 @@ maintainers = [
 license = { file = "LICENSE" }
 dependencies = [
     "nomad-lab>=1.4.1",
-    "ientrance-instruments", # @ git+https://github.com/glaidedata/nomad-ientrance-instruments.git@v0.1.2",
-    "readers-ientrance @ git+https://github.com/glaidedata/readers-ientrance.git@ald-reader"
+    "nomad-measurements",
+    "ientrance-instruments @ git+https://github.com/glaidedata/nomad-ientrance-instruments.git@v0.1.2",
+    "readers-ientrance @ git+https://github.com/glaidedata/readers-ientrance.git@v0.6.0"
 ]
-
-[tool.uv.sources]
-ientrance-instruments = { workspace = true }
 
 [project.urls]
 Repository = "https://github.com/abbasgholami71/nomad-measurements-ald"
