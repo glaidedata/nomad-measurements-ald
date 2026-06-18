@@ -24,7 +24,11 @@ class ALDParser(MatchingParser):
 
         # 1. Italya ALD Check (.txt)
         if filename_lower.endswith('.txt'):
-            if decoded_buffer and ('System Name' in decoded_buffer and 'System Configurations' in decoded_buffer and 'Communication Data' in decoded_buffer):
+            if decoded_buffer and (
+                'System Name' in decoded_buffer
+                and 'System Configurations' in decoded_buffer
+                and 'Communication Data' in decoded_buffer
+            ):
                 return True
 
         return False

@@ -2,7 +2,6 @@ from typing import TYPE_CHECKING
 
 import numpy as np
 import pandas as pd
-
 from ientrance_instruments.schema_packages.schema_package import IEntranceInstrument
 from nomad.datamodel.data import JSON, ArchiveSection, EntryData
 from nomad.datamodel.metainfo.annotations import ELNComponentEnum
@@ -64,7 +63,7 @@ class ALDMeasurementData(ArchiveSection):
     port_configurations = Quantity(
         type=JSON,
         description='Mapping of system ports to their respective chemicals/gases.',
-        a_eln=dict(), 
+        a_eln=dict(),
     )
 
     precursor_doses = Quantity(
@@ -166,15 +165,20 @@ class ELNItalyaALD(BaseALDSpectroscopy, EntryData):
             meas_data = self.results[0].data
             meas_data.port_configurations = ald_data.port_configurations
             meas_data.precursor_doses = ald_data.precursor_doses
-            meas_data.running_recipe = {"steps": ald_data.running_rcp}
+            meas_data.running_recipe = {'steps': ald_data.running_rcp}
 
             # 5. Process and Map Sensor Logs (Telemetry)
-            if ald_data.communication_data is not None and not ald_data.communication_data.empty:
+            if (
+                ald_data.communication_data is not None
+                and not ald_data.communication_data.empty
+            ):
                 df = ald_data.communication_data
 
                 # Convert timestamps to datetime to calculate relative seconds
                 # Format expected: DD.MM.YYYY HH:MM:SS
-                df['datetime'] = pd.to_datetime(df['timestamp'], format="%d.%m.%Y %H:%M:%S", errors='coerce')
+                df['datetime'] = pd.to_datetime(
+                    df['timestamp'], format='%d.%m.%Y %H:%M:%S', errors='coerce'
+                )
 
                 # Drop rows where datetime parsing failed
                 df = df.dropna(subset=['datetime'])
@@ -189,7 +193,9 @@ class ELNItalyaALD(BaseALDSpectroscopy, EntryData):
                         log = SensorLog()
                         log.sensor_name = sensor_name
                         log.time = group['rel_time_s'].to_numpy()
-                        log.value = pd.to_numeric(group['value'], errors='coerce').to_numpy()
+                        log.value = pd.to_numeric(
+                            group['value'], errors='coerce'
+                        ).to_numpy()
                         meas_data.sensor_logs.append(log)
 
         except Exception as e:
