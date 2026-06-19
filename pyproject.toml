@@ -14,7 +14,7 @@ classifiers = [
 ]
 name = "nomad-measurements-ald"
 description = "NOMAD plugin for Atomic Layer Deposition (ALD) data."
-version = "0.1.0"
+version = "0.2.0"
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [
