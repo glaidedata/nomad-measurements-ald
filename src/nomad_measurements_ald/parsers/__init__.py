@@ -1,18 +1,15 @@
 from nomad.config.models.plugins import ParserEntryPoint
-from pydantic import Field
 
 
-class NewParserEntryPoint(ParserEntryPoint):
-    parameter: int = Field(0, description='Custom configuration parameter')
-
+class ALDParserEntryPoint(ParserEntryPoint):
     def load(self):
-        from nomad_measurements_ald.parsers.parser import NewParser
+        from nomad_measurements_ald.parsers.parser import ALDParser
 
-        return NewParser(**self.model_dump())
+        return ALDParser(**self.dict())
 
 
-parser_entry_point = NewParserEntryPoint(
-    name='NewParser',
-    description='New parser entry point configuration.',
-    mainfile_name_re=r'.*\.newmainfilename',
+parser_entry_point = ALDParserEntryPoint(
+    name='ALD Parser',
+    description='Parser for Atomic Layer Deposition (ALD) log files.',
+    mainfile_name_re=r'^.*\.(txt)$',
 )
