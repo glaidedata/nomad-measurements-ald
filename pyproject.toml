@@ -14,7 +14,7 @@ classifiers = [
 ]
 name = "nomad-measurements-ald"
 description = "NOMAD plugin for Atomic Layer Deposition (ALD) data."
-version = "0.2.0"
+version = "0.2.1"
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [
@@ -27,8 +27,7 @@ license = { file = "LICENSE" }
 dependencies = [
     "nomad-lab>=1.4.1",
     "nomad-measurements",
-    "ientrance-instruments @ git+https://github.com/glaidedata/nomad-ientrance-instruments.git@v0.1.2",
-    "readers-ientrance @ git+https://github.com/glaidedata/readers-ientrance.git@v0.6.0"
+    "readers-ientrance @ git+https://github.com/glaidedata/readers-ientrance.git@v0.7.0"
 ]
 
 [project.urls]
